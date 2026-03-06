@@ -11,18 +11,17 @@
         :root {
             --f1-red: #FF1801;
             --f1-cyan: #00FFFF;
-            --carbon: #0A0A0B;
         }
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #050505; 
             color: #ffffff;
             margin: 0;
+            overflow-x: hidden;
         }
         .font-f1 { font-family: 'Orbitron', sans-serif; }
         .font-code { font-family: 'Fira Code', monospace; }
         
-        /* Efeito de Vidro e Neon */
         .glass-card {
             background: rgba(20, 20, 22, 0.7);
             backdrop-filter: blur(12px);
@@ -32,10 +31,8 @@
         .glass-card:hover {
             border-color: var(--f1-cyan);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-            transform: translateY(-5px);
         }
         
-        /* Background de Carbono */
         .bg-pattern {
             background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
             background-size: 32px 32px;
@@ -47,18 +44,18 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Animação de Scanner */
+        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
         .scanline {
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 255, 255, 0.3);
-            position: absolute;
-            animation: scan 4s linear infinite;
+            width: 100%; height: 2px; background: rgba(0, 255, 255, 0.3);
+            position: absolute; animation: scan 4s linear infinite;
         }
-        @keyframes scan {
-            0% { top: 0%; }
-            100% { top: 100%; }
-        }
+
+        /* ANIMAÇÕES DOS CARROS */
+        @keyframes arriveLeft { 0% { transform: translateX(-150%); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+        @keyframes arriveRight { 0% { transform: translateX(150%); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+        
+        .animate-kart { animation: arriveLeft 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .animate-f1 { animation: arriveRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     </style>
 </head>
 <body class="bg-pattern">
@@ -69,9 +66,9 @@
                 BOX<span class="text-cyan-400 font-light">STRATEGY</span>
             </div>
             <div class="hidden md:flex space-x-8 font-f1 text-[10px] tracking-[0.3em] uppercase">
-                <a href="#objetivo" class="hover:text-cyan-400 transition">Objetivo</a>
-                <a href="#etapas" class="hover:text-cyan-400 transition">Cronograma</a>
-                <a href="#tech" class="hover:text-cyan-400 transition text-red-500 underline underline-offset-4">Ação Social</a>
+                <a href="#objetivo" class="hover:text-cyan-400 transition text-white">Objetivo</a>
+                <a href="#etapas" class="hover:text-cyan-400 transition text-white">Cronograma</a>
+                <a href="#social" class="hover:text-cyan-400 transition text-red-500 underline underline-offset-4">Ação Social</a>
             </div>
         </div>
     </nav>
@@ -81,48 +78,64 @@
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[120px]"></div>
 
-        <p class="font-f1 text-cyan-400 tracking-[0.8em] text-xs mb-4 uppercase animate-pulse">Iniciando Sequência de Telemetria</p>
-        <h1 class="font-f1 text-5xl md:text-8xl font-black italic leading-none mb-6">
-            DA PISTA <br> <span class="gradient-text">AO CÓDIGO</span>
-        </h1>
-        <p class="max-w-xl text-gray-400 font-light text-sm md:text-base mb-10 tracking-wide">
-            Democratizando o acesso ao automobilismo e realizando sonhos
+        <p class="font-f1 text-cyan-400 tracking-[0.8em] text-xs mb-8 uppercase animate-pulse z-10">Conectando Campinas à Velocidade</p>
+        
+        <div class="flex items-center justify-center gap-6 md:gap-12 mb-10 z-10 w-full max-w-7xl">
+            <div class="hidden lg:block w-1/4 animate-kart">
+                <svg viewBox="0 0 200 100" class="fill-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">
+                    <path d="M40,75 L160,75 L150,55 L120,50 L110,35 L60,35 L50,55 L40,60 Z M50,75 A12,12 0 1,0 74,75 A12,12 0 1,0 50,75 M130,75 A12,12 0 1,0 154,75 A12,12 0 1,0 130,75" />
+                </svg>
+            </div>
+
+            <h1 class="font-f1 text-5xl md:text-8xl font-black italic leading-none flex-grow text-center">
+                DA PISTA <br> <span class="gradient-text">AO CÓDIGO</span>
+            </h1>
+
+            <div class="hidden lg:block w-1/4 animate-f1">
+                <svg viewBox="0 0 200 100" class="fill-red-600 drop-shadow-[0_0_10px_rgba(255,24,1,0.5)]">
+                    <path d="M10,70 L190,70 L185,60 L150,55 L140,30 L120,30 L115,50 L80,50 L70,30 L50,30 L45,55 L15,60 Z M30,70 A12,12 0 1,0 54,70 A12,12 0 1,0 30,70 M145,70 A12,12 0 1,0 169,70 A12,12 0 1,0 145,70" />
+                </svg>
+            </div>
+        </div>
+
+        <p class="font-f1 text-red-600 text-lg md:text-2xl mb-12 tracking-wide uppercase font-bold z-10">
+            Democratizando o acesso ao automobilismo
         </p>
         
-        <div class="flex flex-col md:flex-row gap-4">
-            <a href="#etapas" class="bg-white text-black font-f1 font-bold px-10 py-4 rounded-full text-xs hover:bg-cyan-400 transition-colors uppercase">
-                Ver Estrutura
-            </a>
+        <div class="flex flex-col md:flex-row gap-4 z-10">
+            <a href="#etapas" class="bg-white text-black font-f1 font-bold px-10 py-4 rounded-full text-xs hover:bg-cyan-400 transition-colors uppercase">Explorar Jornada</a>
             <div class="px-10 py-4 border border-white/20 rounded-full font-f1 text-[10px] flex items-center gap-2">
-                <span class="w-2 h-2 bg-red-600 rounded-full animate-ping"></span> CAMPINAS, SP
+                <span class="w-2 h-2 bg-red-600 rounded-full animate-ping"></span> SHOPPING DOM PEDRO
             </div>
         </div>
     </header>
+
+    <section id="objetivo" class="py-24 px-6 max-w-5xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             <div>
-                <h2 class="font-f1 text-3xl mb-6 italic border-l-4 border-red-600 pl-4 uppercase">Objetivo da Ação</h2>
                 <h2 class="font-f1 text-3xl mb-6 italic border-l-4 border-red-600 pl-4 uppercase">O Coração do Projeto</h2>
-<p class="text-gray-400 leading-relaxed mb-6">
-    O <strong>Box Strategy</strong> nasce para subverter a lógica de exclusão do automobilismo. Sabemos que o acesso às pistas hoje é extremamente difícil devido aos altos custos. Nossa missão é <strong>democratizar esse universo</strong>, mostrando que a tecnologia é o grande equalizador: se o asfalto é caro, o conhecimento técnico e a lógica de programação são horizontes abertos para todos.
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    O <strong>Box Strategy</strong> nasceu para subverter a lógica de exclusão do automobilismo. Sabemos que para o fã em Campinas, o acesso às pistas é muitas vezes um sonho distante devido aos custos. Nossa missão no <strong>Shopping Dom Pedro</strong> é democratizar esse universo, provando que a tecnologia é a chave: se o grid real é para poucos, a inteligência e a programação são caminhos abertos para todos os apaixonados pela velocidade.
+                </p>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="p-4 border border-white/10 rounded">
                         <p class="text-cyan-400 font-f1 text-xl italic mb-1">Público</p>
-                        <p class="text-[10px] text-gray-500 uppercase tracking-tighter">Campineiros que gostam de automobilismo</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-tighter">Fãs de Automobilismo</p>
                     </div>
                     <div class="p-4 border border-white/10 rounded">
                         <p class="text-cyan-400 font-f1 text-xl italic mb-1">Local</p>
-                        <p class="text-[10px] text-gray-500 uppercase tracking-tighter text-nowrap">Shopping Dom Pedro</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-tighter text-nowrap">Shopping Parque Dom Pedro</p>
                     </div>
                 </div>
             </div>
             <div class="relative">
                 <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-red-600 rounded-lg blur opacity-25"></div>
                 <div class="relative glass-card p-8 rounded-lg">
-                    <h3 class="font-f1 text-xs text-red-500 mb-4 tracking-[0.3em]">IMPACTO ESPERADO</h3>
+                    <h3 class="font-f1 text-xs text-red-500 mb-4 tracking-[0.3em]">IMPACTO SOCIAL</h3>
                     <ul class="space-y-4 text-sm font-light text-gray-300">
-                        <li class="flex items-center gap-3"> <span class="text-cyan-400">⚡</span> Estimular o interesse pela área de TI</li>
-                        <li class="flex items-center gap-3"> <span class="text-cyan-400">⚡</span> Democratizar o conhecimento tecnológico</li>
-                        <li class="flex items-center gap-3"> <span class="text-cyan-400">⚡</span> Reduzir a percepção de elitismo no esporte</li>
+                        <li class="flex items-center gap-3"> <span class="text-cyan-400">⚡</span> Romper o elitismo histórico do esporte</li>
+                        <li class="flex items-center gap-3"> <span class="text-cyan-400">⚡</span> Transformar fãs em futuros desenvolvedores</li>
+                        <li class="flex items-center gap-3"> <span class="text-cyan-400">⚡</span> Criar um hub de tecnologia e paixão em Campinas</li>
                     </ul>
                 </div>
             </div>
@@ -131,58 +144,32 @@
 
     <section id="etapas" class="py-24 bg-zinc-900/50">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-f1 text-4xl text-center mb-16 italic uppercase leading-tight">Estrutura da <span class="text-cyan-400">Ação</span></h2>
-            
+            <h2 class="font-f1 text-4xl text-center mb-16 italic uppercase">A Jornada no <span class="text-cyan-400">Dom Pedro</span></h2>
             <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <div class="glass-card p-6 rounded-xl flex flex-col">
+                <div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
                     <span class="font-f1 text-red-600 text-3xl italic mb-4">01</span>
-                    <h4 class="font-f1 text-sm mb-4 uppercase">Vivência na Pista</h4>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Experiência real de corrida para despertar engajamento prático.</p>
+                    <h4 class="font-f1 text-sm mb-2 uppercase">Exposição</h4>
+                    <p class="text-[10px] text-gray-500">Contato direto com a engenharia de pista.</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl flex flex-col">
+                <div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
                     <span class="font-f1 text-red-600 text-3xl italic mb-4">02</span>
-                    <h4 class="font-f1 text-sm mb-4 uppercase">Análise de Dados</h4>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Discussão sobre tempos, constância e a importância dos dados.</p>
+                    <h4 class="font-f1 text-sm mb-2 uppercase">Telemetria</h4>
+                    <p class="text-[10px] text-gray-500">Aprenda a ler os dados que decidem corridas.</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl flex flex-col">
-                    <span class="font-f1 text-red-600 text-3xl italic mb-4">03</span>
-                    <h4 class="font-f1 text-sm mb-4 uppercase">Simulador</h4>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Demonstração do sistema Box Strategy e decisões por programação.</p>
+                <div class="glass-card p-6 rounded-xl flex flex-col items-center text-center border-l-cyan-500 border-l-4">
+                    <span class="font-f1 text-cyan-500 text-3xl italic mb-4">03</span>
+                    <h4 class="font-f1 text-sm mb-2 uppercase">Simulador</h4>
+                    <p class="text-[10px] text-gray-500">O sistema Box Strategy em ação real.</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl flex flex-col">
+                <div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
                     <span class="font-f1 text-red-600 text-3xl italic mb-4">04</span>
-                    <h4 class="font-f1 text-sm mb-4 uppercase">Mini Oficina</h4>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Cálculos de desempenho e lógica condicional aplicada.</p>
+                    <h4 class="font-f1 text-sm mb-2 uppercase">Oficina Code</h4>
+                    <p class="text-[10px] text-gray-500">Lógica de programação aplicada ao pódio.</p>
                 </div>
-                <div class="glass-card p-6 rounded-xl border-l-cyan-500 border-l-4">
-                    <span class="font-f1 text-cyan-500 text-3xl italic mb-4">05</span>
-                    <h4 class="font-f1 text-sm mb-4 uppercase">Encerramento</h4>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Reflexão sobre carreira: tecnologia é o caminho acessível.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="tech" class="py-24 px-6 max-w-4xl mx-auto">
-        <div class="bg-black border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-            <div class="bg-zinc-800 px-6 py-3 flex items-center justify-between border-b border-white/5">
-                <div class="flex gap-2">
-                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <span class="font-code text-[10px] text-gray-500 uppercase tracking-widest">strategy_logic.py</span>
-            </div>
-            <div class="p-8 font-code text-sm md:text-base leading-relaxed overflow-x-auto">
-                <p><span class="text-pink-500 italic"># Definição de Estratégia Box Strategy</span></p>
-                <p class="mt-4"><span class="text-blue-400">def</span> <span class="text-yellow-400">analisar_performance</span>(tempo_volta, desgaste_pneu):</p>
-                <p class="ml-6"><span class="text-pink-500">if</span> tempo_volta > <span class="text-orange-400">60.5</span> <span class="text-pink-500">or</span> desgaste_pneu > <span class="text-orange-400">0.8</span>:</p>
-                <p class="ml-12 text-cyan-400">return <span class="text-white">"ENTRAR NO BOX: AJUSTAR SOFTWARE"</span></p>
-                <p class="ml-6"><span class="text-pink-500">else</span>:</p>
-                <p class="ml-12 text-green-400">return <span class="text-white">"MANTER NA PISTA: DADOS OTIMIZADOS"</span></p>
-                
-                <div class="mt-10 pt-6 border-t border-white/5 text-gray-500 text-xs">
-                    // Conectando o esporte à lógica de programação
+                <div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+                    <span class="font-f1 text-red-600 text-3xl italic mb-4">05</span>
+                    <h4 class="font-f1 text-sm mb-2 uppercase">Pit Wall</h4>
+                    <p class="text-[10px] text-gray-500">Sinta o peso das decisões de um engenheiro.</p>
                 </div>
             </div>
         </div>
@@ -190,7 +177,7 @@
 
     <footer class="py-12 border-t border-white/10 text-center">
         <div class="font-f1 text-xl font-black italic mb-2 tracking-tighter">BOX<span class="text-cyan-400 font-light text-sm">STRATEGY</span></div>
-        <p class="text-[10px] text-gray-600 tracking-[0.5em] uppercase">Projeto Social • Campinas • 2026</p>
+        <p class="text-[10px] text-gray-600 tracking-[0.5em] uppercase">Shopping Dom Pedro • Campinas • 2026</p>
     </footer>
 
 </body>
