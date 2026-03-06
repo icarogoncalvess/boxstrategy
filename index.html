@@ -59,18 +59,6 @@
             0% { top: 0%; }
             100% { top: 100%; }
         }
-
-        /* NOVAS ANIMAÇÕES DOS CARROS */
-        @keyframes arriveLeft {
-            0% { transform: translateX(-150%); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes arriveRight {
-            0% { transform: translateX(150%); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        .animate-kart { animation: arriveLeft 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .animate-f1 { animation: arriveRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     </style>
 </head>
 <body class="bg-pattern">
@@ -88,37 +76,20 @@
         </div>
     </nav>
 
-    <header class="relative h-screen flex flex-col justify-center items-center text-center px-4 pt-20 overflow-hidden hero-bg">
+    <header class="relative h-screen flex flex-col justify-center items-center text-center px-4 pt-20 overflow-hidden">
         <div class="scanline"></div>
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[120px]"></div>
 
-        <p class="font-f1 text-cyan-400 tracking-[0.8em] text-xs mb-8 uppercase animate-pulse z-10">Iniciando Sequência de Telemetria</p>
-        
-        <div class="flex items-center justify-center gap-6 md:gap-12 mb-10 z-10 w-full max-w-7xl">
-            <div class="hidden lg:block w-1/4 animate-kart">
-                <svg viewBox="0 0 200 100" class="fill-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">
-                    <path d="M40,75 L160,75 L150,55 L120,50 L110,35 L60,35 L50,55 L40,60 Z M50,75 A12,12 0 1,0 74,75 A12,12 0 1,0 50,75 M130,75 A12,12 0 1,0 154,75 A12,12 0 1,0 130,75" />
-                    <rect x="90" y="25" width="5" height="20" transform="rotate(-15 90 25)"/>
-                </svg>
-            </div>
-
-            <h1 class="font-f1 text-5xl md:text-8xl font-black italic leading-none flex-grow text-center">
-                DA PISTA <br> <span class="gradient-text">AO CÓDIGO</span>
-            </h1>
-
-            <div class="hidden lg:block w-1/4 animate-f1">
-                <svg viewBox="0 0 200 100" class="fill-red-600 drop-shadow-[0_0_10px_rgba(255,24,1,0.5)]">
-                    <path d="M10,70 L190,70 L185,60 L150,55 L140,30 L120,30 L115,50 L80,50 L70,30 L50,30 L45,55 L15,60 Z M30,70 A12,12 0 1,0 54,70 A12,12 0 1,0 30,70 M145,70 A12,12 0 1,0 169,70 A12,12 0 1,0 145,70" />
-                    <rect x="150" y="25" width="30" height="5" /> </svg>
-            </div>
-        </div>
-
-        <p class="font-f1 text-red-600 text-lg md:text-2xl mb-12 tracking-wide uppercase font-bold z-10">
-            Democratizando o acesso ao automobilismo
+        <p class="font-f1 text-cyan-400 tracking-[0.8em] text-xs mb-4 uppercase animate-pulse">Iniciando Sequência de Telemetria</p>
+        <h1 class="font-f1 text-5xl md:text-8xl font-black italic leading-none mb-6">
+            DA PISTA <br> <span class="gradient-text">AO CÓDIGO</span>
+        </h1>
+        <p class="max-w-xl text-gray-400 font-light text-sm md:text-base mb-10 tracking-wide">
+            Transformando a velocidade do Kartódromo de Campinas em conhecimento tecnológico para jovens de escolas públicas.
         </p>
         
-        <div class="flex flex-col md:flex-row gap-4 z-10">
+        <div class="flex flex-col md:flex-row gap-4">
             <a href="#etapas" class="bg-white text-black font-f1 font-bold px-10 py-4 rounded-full text-xs hover:bg-cyan-400 transition-colors uppercase">
                 Ver Estrutura
             </a>
